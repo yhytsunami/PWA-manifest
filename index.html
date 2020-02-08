@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PWA Manifest hellow world</title>
+    <link rel="manifest" crossorigin="use-credentials" href="./manifest.json"/>
+</head>
+<body>
+    <h1>hellow world PWA Manifest</h1>
+</body>
+<script>
+    window.addEventListener('load',() => {
+        if ('serviceWorker' in navigator){
+            navigator.serviceWorker.register("./sw.js").then(registration => {
+                console.log(registration);
+            }).catch(e => {console.log(e)})
+        }else{
+            console.log("not supported serviceWorker");
+        }
+    });
+
+    //监听在线和离线事件
+    window.addEventListener('online',() => {
+        notificate("您已经连接上网络");
+    })
+
+    window.addEventListener('offline',() => {
+        notificate("您已经断网");
+    })
+
+    //判断是否有通知的权限
+    async function notificate(message){
+        const permission = Notification.permission;
+        if(permission == 'default'){
+            await Notification.requestPermission();
+            new Notification('提示',{body:message});
+        }else if (permission == 'denied'){
+            alert(message);
+        }else {
+            new Notification('提示',{body:message});
+        }
+    }
+
+</script>
+</html>

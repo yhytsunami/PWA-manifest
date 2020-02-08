@@ -1,0 +1,16 @@
+{
+  "name":"yhy-pwa-hellow-world",
+  "short_name":"yhy-pwa",
+  "short_url":".",
+  "display":"standalone",
+  "background":"green",
+  "description": "yhy first pwa web app",
+  "icons":[
+    {
+      "src":"lizhien.png",
+      "size":"144X144",
+      "type":"img/png"
+    }
+  ]
+
+}
